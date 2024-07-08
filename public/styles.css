@@ -1,0 +1,129 @@
+body {
+    font-family: 'Arial', sans-serif;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #00b0c8;
+    text-align: center;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: white;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #00b0c8;
+    color: white;
+}
+
+img {
+    border-radius: 50%;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+    margin: 0 10px;
+    padding: 5px 10px;
+    background-color: #00b0c8;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination a:hover {
+    background-color: #008ba1;
+}
+
+form {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+input, select, button {
+    margin: 0 5px;
+    padding: 5px;
+}
+
+button {
+    background-color: #00b0c8;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #008ba1;
+}
+
+.character-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+.character-details img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+}
+
+.character-details ul {
+    list-style: none;
+    padding: 0;
+}
+
+.character-details ul li {
+    margin: 10px 0;
+}
+
+.character-details h2 {
+    margin-top: 20px;
+    color: #00b0c8;
+}
+
+.character-details a {
+    color: #00b0c8;
+    text-decoration: none;
+}
+
+.character-details a:hover {
+    text-decoration: underline;
+}
+
+a.back-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #00b0c8;
+    text-decoration: none;
+}
+
+a.back-link:hover {
+    text-decoration: underline;
+}

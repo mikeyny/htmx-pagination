@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick and Morty Explorer</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1>Rick and Morty Character Explorer</h1>
+    
+    <form id="filter-form" hx-get="/" hx-target="body" hx-push-url="true">
+        <input type="text" name="name" placeholder="Name" value="<%= query.name || '' %>">
+        <select name="status">
+            <option value="">All Statuses</option>
+            <option value="alive" <%= query.status === 'alive' ? 'selected' : '' %>>Alive</option>
+            <option value="dead" <%= query.status === 'dead' ? 'selected' : '' %>>Dead</option>
+            <option value="unknown" <%= query.status === 'unknown' ? 'selected' : '' %>>Unknown</option>
+        </select>
+        <button type="submit">Filter</button>
+    </form>
+
+    <div id="character-table">
+        <% if (data.results && data.results.length > 0) { %>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Species</th>
+                        <th>Origin</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% data.results.forEach(character => { %>
+                        <tr>
+                            <td><img src="<%= character.image %>" alt="<%= character.name %>" width="50"></td>
+                            <td><%= character.name %></td>
+                            <td><%= character.status %></td>
+                            <td><%= character.species %></td>
+                            <td><%= character.origin.name %></td>
+                            <td><a href="/character/<%= character.id %>" hx-get="/character/<%= character.id %>" hx-target="body" hx-push-url="true">View More</a></td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <% const currentPage = parseInt(query.page) || 1; %>
+                <% const queryString = Object.keys(query).filter(key => key !== 'page').map(key => `${key}=${query[key]}`).join('&'); %>
+                <% if (data.info.prev) { %>
+                    <a href="/?page=<%= currentPage - 1 %>&<%= queryString %>"
+                       hx-get="/?page=<%= currentPage - 1 %>&<%= queryString %>"
+                       hx-target="body"
+                       hx-push-url="true">Previous</a>
+                <% } %>
+                <span>Page <%= currentPage %> of <%= data.info.pages %></span>
+                <% if (data.info.next) { %>
+                    <a href="/?page=<%= currentPage + 1 %>&<%= queryString %>"
+                       hx-get="/?page=<%= currentPage + 1 %>&<%= queryString %>"
+                       hx-target="body"
+                       hx-push-url="true">Next</a>
+                <% } %>
+            </div>
+        <% } else { %>
+            <p>No characters found. Try adjusting your filters.</p>
+        <% } %>
+    </div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= character.name %> - Details</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <h1><%= character.name %> - Details</h1>
+    <div class="character-details">
+        <img src="<%= character.image %>" alt="<%= character.name %>">
+        <ul>
+            <li><strong>Status:</strong> <%= character.status %></li>
+            <li><strong>Species:</strong> <%= character.species %></li>
+            <li><strong>Gender:</strong> <%= character.gender %></li>
+            <li><strong>Origin:</strong> <%= character.origin.name %></li>
+            <li><strong>Location:</strong> <%= character.location.name %></li>
+        </ul>
+        <h2>Episodes</h2>
+        <p>
+            <% character.episode.forEach((episode, index) => { 
+                const episodeNumber = episode.split('/').pop();
+            %>
+                <a href="<%= episode %>" target="_blank"><%= episodeNumber %></a><%= index < character.episode.length - 1 ? ', ' : '' %>
+            <% }); %>
+        </p>
+    </div>
+    <a href="/" hx-get="/" hx-target="body" hx-push-url="true">Back to Character List</a>
+</body>
+</html>
